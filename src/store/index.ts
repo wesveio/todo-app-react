@@ -3,9 +3,13 @@ import createSagaMiddleware from "redux-saga";
 import { SessionState } from "./session/types";
 import rootReducer from "./rootReducer";
 import rootSaga from "./rootSaga";
+import { TodosState } from "./todos/types";
+import { ModalState } from "./modal/types";
 
 export interface ApplicationState {
   session: SessionState;
+  todos: TodosState;
+  modal: ModalState;
 }
 
 declare global {

@@ -11,7 +11,6 @@ export interface iSession {
   status: string;
   sessionId: string;
   errorRate: number;
-  // error: string;
 }
 
 export interface SessionState {

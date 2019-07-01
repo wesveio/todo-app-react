@@ -12,7 +12,6 @@ const INIT_STATE: SessionState = {
 };
 
 const reducer: Reducer<SessionState> = (state = INIT_STATE, action) => {
-  console.log("action.type", action.type, action);
   switch (action.type) {
     case SessionTypes.LOAD_REQUEST:
       return { ...state, loading: true };
