@@ -1,12 +1,43 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./assets/styles/index.scss";
 import Today from "./components/Today/Today";
+import SessionComponent from "./components/Session/Session";
 
-class App extends Component {
+interface StateProps {}
+
+interface DispatchProps {}
+
+interface OwnProps {}
+
+interface OwnState {
+  showSidebar: boolean;
+}
+
+type Props = StateProps & DispatchProps & OwnProps;
+
+class App extends Component<Props, OwnState> {
+  state = {
+    showSidebar: false
+  };
+
+  toggleSidebar = () => {
+    this.setState({ showSidebar: !this.state.showSidebar });
+  };
+
   render() {
+    const state = this.state;
+
     return (
-      <div className="App">
+      <div className={"App " + (state.showSidebar ? "blur" : "")}>
+        <SessionComponent
+          showSidebar={state.showSidebar}
+          toggleSidebar={this.toggleSidebar}
+        />
         <div className="ui container">
+          <div className="menu" onClick={() => this.toggleSidebar()}>
+            <i className="bars icon" />
+          </div>
           <div className="row">
             <div className="logo">
               {
@@ -82,4 +113,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);
